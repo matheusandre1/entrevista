@@ -1,0 +1,32 @@
+@page
+@model Projeto.Pages.Usuarios.IndexModel
+@{
+}
+
+<h1>👥 Gestão de Usuários</h1>
+
+<div class="mb-3">
+    <a asp-page="./Insert" class="btn btn-primary">➕ Novo Usuário</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Login</th>
+            <th>Administrador</th>
+            <th>Ativo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Usuarios)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.Login</td>
+                <td>@(item.IsAdmin ? "Sim" : "Não")</td>
+                <td>@(item.IsAtivo ? "Ativo" : "Inativo")</td>
+            </tr>
+        }
+    </tbody>
+</table>

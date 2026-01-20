@@ -1,0 +1,63 @@
+﻿@page
+@model Projeto.Pages.Clientes.EditModel
+@{
+}
+
+<p class="text-danger">@Model.Erro</p>
+
+<h4>✏ Edição de Cliente</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Cliente.Nome)
+                @Html.TextBoxFor(m => m.Cliente.Nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cliente.Nome)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Cliente.Email)
+                @Html.TextBoxFor(m => m.Cliente.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cliente.Email)
+            </div>
+                
+            <div class="form-group">
+                @Html.LabelFor(m => m.Cliente.DataNascimento)
+                <input asp-for="Cliente.DataNascimento" class="form-control" type="date" value="@Model.Cliente?.DataNascimento.ToString("yyyy-MM-dd")" />
+                @Html.ValidationMessageFor(model => model.Cliente.DataNascimento)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Cliente.Telefone)
+                @Html.TextBoxFor(m => m.Cliente.Telefone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cliente.Telefone)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Cliente.Cidade)
+                @Html.TextBoxFor(m => m.Cliente.Cidade, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cliente.Cidade)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Cliente.Genero)
+                @Html.TextBoxFor(m => m.Cliente.Genero, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cliente.Genero)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Cliente.UsuarioResponsavelId)
+                @Html.DropDownListFor(m => m.Cliente.UsuarioResponsavelId, new SelectList(Model.Usuarios, "Id", "Nome"), "Selecione um responsável", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Cliente.UsuarioResponsavelId)
+            </div>
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.Cliente.Id)
+                <input type="submit" value="Confirmar Edição" class="btn btn-primary" /> |
+                <a asp-page="./Index">Voltar para Lista</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@page
+@model Projeto.Pages.Clientes.IndexModel
+@{
+}
+
+<h1>👨‍👨‍👦 Cadastro de Clientes</h1>
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<div class="mb-3">
+    <a asp-page="./Insert" class="btn btn-primary">➕ Novo Cliente</a>
+</div>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Data Nasc.</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Cidade</th>
+            <th>Gênero</th>
+            <th>Responsável</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.Clientes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @(item.DataNascimento.ToShortDateString())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsuarioResponsavelId)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">✏</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">❌</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

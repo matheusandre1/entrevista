@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>b371d506-a7e2-47cc-8f1d-c35882e4315d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Projeto.Core</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\Cliente.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\Log.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\Tarefa.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entity\Usuario.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\IEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\ICrudService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\IRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\IUnitOfWork.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\IConnectionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\Repository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\UnitOfWork.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\SQLiteConnectionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\ClienteRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\TarefaRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\LogRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\UsuarioRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\DatabaseInitializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Exceptions\BusinessException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ClienteService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\TarefaService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UsuarioService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\Database\IDatabaseInitializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Infrastructure\Database\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Entity\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
+  </ItemGroup>
+</Project>

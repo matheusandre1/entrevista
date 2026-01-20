@@ -1,0 +1,50 @@
+@page
+@model Projeto.Pages.Usuarios.InsertModel
+@{
+}
+
+<h4>➕ Adicionar Novo Usuário</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Usuario.Nome)
+                @Html.TextBoxFor(m => m.Usuario.Nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Usuario.Nome)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Usuario.Login)
+                @Html.TextBoxFor(m => m.Usuario.Login, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Usuario.Login)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Usuario.Senha)
+                @Html.PasswordFor(m => m.Usuario.Senha, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Usuario.Senha)
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Usuario.IsAdmin" /> @Html.DisplayNameFor(model => model.Usuario.IsAdmin)
+                </label>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Usuario.IsAtivo" /> @Html.DisplayNameFor(model => model.Usuario.IsAtivo)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" /> |
+                <a asp-page="./Index">Voltar para Lista</a>
+            </div>
+        </form>
+    </div>
+</div>

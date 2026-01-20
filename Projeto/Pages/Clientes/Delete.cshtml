@@ -1,0 +1,38 @@
+﻿@page
+@model Projeto.Pages.Clientes.DeleteModel
+@{
+}
+
+<p class="text-danger">@Model.Erro</p>
+
+<div>
+    <h4>❌ Deseja realmente excluir o registro a seguir?</h4>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente.DataNascimento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente.DataNascimento)
+        </dd>
+    </dl>
+
+
+    <form method="post">
+        <input type="submit" value="Confirmar Exclusão" class="btn btn-danger" /> |
+        <a asp-page="./Index">Voltar para Lista</a>
+    </form>
+</div>
