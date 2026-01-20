@@ -21,7 +21,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET Core
+      - name: Setup .NET Core (x64)
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          architecture: x64
+
+      - name: Setup .NET Core (x86)
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
@@ -50,11 +56,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET Core
+      - name: Setup .NET Core (x64)
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          architecture: x64
+
+      - name: Setup .NET Core (x86)
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           architecture: x86
+
+      - name: Dotnet Info
+        run: dotnet --info
 
       - name: Cache NuGet packages
         uses: actions/cache@v4
