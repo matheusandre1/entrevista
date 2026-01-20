@@ -15,14 +15,15 @@ namespace Projeto.Tests.Services
         private readonly Mock<IClienteRepository> _clienteRepositoryMock;
         private readonly Mock<IUnitOfWork> _uowMock;
         private readonly ClienteService _clienteService;
-        private readonly ILogService _logService;
+        private readonly Mock<ILogService> _logServiceMock;
 
         public ClienteServiceTests()
         {
             _fixture = new Fixture();
             _clienteRepositoryMock = new Mock<IClienteRepository>();
             _uowMock = new Mock<IUnitOfWork>();
-            _clienteService = new ClienteService(_clienteRepositoryMock.Object, _uowMock.Object, _logService);
+            _logServiceMock = new Mock<ILogService>();
+            _clienteService = new ClienteService(_clienteRepositoryMock.Object, _uowMock.Object, _logServiceMock.Object);
         }
 
         [Fact]
