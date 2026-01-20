@@ -21,24 +21,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET Core (x64)
+      - name: Setup .NET Core 3.1 (x64)
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          architecture: x64
-
-      - name: Setup .NET Core (x86)
-        id: setup-x86
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-          architecture: x86
 
       - name: Cache NuGet packages
         uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/*.csproj') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
 
@@ -57,18 +49,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET Core (x64)
+      - name: Setup .NET Core 3.1 (x64)
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          architecture: x64
-
-      - name: Setup .NET Core (x86)
-        id: setup-test-x86
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-          architecture: x86
 
       - name: Dotnet Info
         run: dotnet --info
@@ -77,17 +61,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/*.csproj') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      - name: Restore dependencies
+      - name: Restore test dependencies
         run: dotnet restore Projeto.Tests/Projeto.Tests.csproj
 
       - name: Build test project
         run: dotnet build Projeto.Tests/Projeto.Tests.csproj --configuration Release --no-restore
 
       - name: Run unit tests
-        env:
-          DOTNET_ROOT: ${{ steps.setup-test-x86.outputs.dotnet-path }}
-        run: dotnet test Projeto.Tests/Projeto.Tests.csproj --configuration Release --no-build --verbosity normal -- RunConfiguration.TargetPlatform=x86
+        run: dotnet test Projeto.Tests/Projeto.Tests.csproj --configuration Release --no-build --verbosity normal
